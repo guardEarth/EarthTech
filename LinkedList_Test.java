@@ -1,10 +1,9 @@
-package guard.earth2;
+package beifen;
 
 import java.util.LinkedList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.LockSupport;
-import guard.earth.EarthTech;
 
 public class LinkedList_Test
 {
@@ -14,7 +13,7 @@ public class LinkedList_Test
 	private static final AtomicInteger exit = new AtomicInteger();
 	private static final LinkedList<String> list1 = new LinkedList<String>();
 	private static final ConcurrentLinkedQueue<String> list2 = new ConcurrentLinkedQueue<String>();
-	private static final EarthTech.LinkedList<String> list3 = new EarthTech.LinkedList<String>();
+	private static final EarthJUC.LinkedList<String> list3 = new EarthJUC.LinkedList<String>();
 
 	public static void main(String[] args) throws InterruptedException
 	{
@@ -51,12 +50,12 @@ public class LinkedList_Test
 			}
 			else
 			{
-				System.out.println("EarthTech.LinkedList:  time="+(System.currentTimeMillis()-start)+"ms");
+				System.out.println("EarthJUC.LinkedList:   time="+(System.currentTimeMillis()-start)+"ms");
 			}
 		}
 		list1.clear();
 		list3.clear();
-		n = 60000;;
+		n = 50000;;
 		for(int i=0;i<n;i++)
 		{
 			list1.add(i+"");
@@ -91,7 +90,7 @@ public class LinkedList_Test
 			}
 			else
 			{
-				System.out.println("EarthTech.LinkedList:  time="+(System.currentTimeMillis()-start)+"ms");
+				System.out.println("EarthJUC.LinkedList:   time="+(System.currentTimeMillis()-start)+"ms");
 			}
 		}
 		list1.clear();
@@ -144,7 +143,7 @@ public class LinkedList_Test
 			    		}
 			    		else
 			    		{
-			    			str1 = "EarthTech.LinkedList:      ";
+			    			str1 = "EarthJUC.LinkedList:       ";
 			    		}
 			    		System.out.print(str1+"time="+(System.currentTimeMillis()-start)+"ms");
 			    		System.out.println();

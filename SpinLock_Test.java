@@ -1,85 +1,52 @@
-package guard.earth2;
+package beifen;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.concurrent.locks.LockSupport;
-import guard.earth.EarthTech;
 
 public class SpinLock_Test
 {
-	private static int why = 1;
 	private static long start;
-	private static Thread thread;
 	private static int a = 0;
 	private static final ReentrantLock lock1 = new ReentrantLock(false);
-	private static final EarthTech.Lock lock2 = new EarthTech.Lock(false);//Non fair
+	private static final EarthJUC.SpinLock lock2 = new EarthJUC.SpinLock();
 	private static final AtomicInteger exit = new AtomicInteger();
 
 	public static void main(String[] args) throws CloneNotSupportedException, InterruptedException
 	{
-		thread = Thread.currentThread();
-	    for(int i=0;i<4;i++)
-	    {
-	    	start();
-	    	LockSupport.park();
-	    }
-	}
-
-	private static void start()
-	{
 		start = System.currentTimeMillis();
-		for(int i=0;i<1000;i++)
+		for(int i1=0;i1<1000;i1++)//1000 Thread
 		{
 			new Thread()
 			{
 				public void run()
 			    {
-			    	for(int i1=0;i1<100000;i1++)//change is ok
+			    	for(int i2=0;i2<200000;i2++)//change is ok
 					{
-			    		if(why == 1 || why == 3)
+			    		lock2.lock();
+			    		try{
+			    	        ++a;
+			    		   }
+			    		finally
 			    		{
-			    			lock1.lock();
-				    		try{
-				    	        ++a;
-				    		   }
-				    		finally
-				    		{
-				    			lock1.unlock();
-				    		}
+			    			lock2.unlock();
 			    		}
-			    		else
-			    		{
-			    			lock2.lock();
-				    		try{
-				    	        ++a;
-				    		   }
-				    		finally
-				    		{
-				    			lock2.unlock();
-				    		}
-			    		}
+			    		
+			    		//jdk test
+//			    		lock1.lock();
+//			    		try{
+//			    	        ++a;
+//			    		   }
+//			    		finally
+//			    		{
+//			    			lock1.unlock();
+//			    		}
 					}
 			    	if(exit.incrementAndGet() == 1000)
 			    	{
-			    		String str;
-			    		if(why == 1 || why == 3)
-			    		{
-			    			str = "jdk ReentrantLock: ";
-			    		}
-			    		else
-			    		{
-			    			str = "EarthTech.Lock:    ";
-			    		}
-			    		if(why == 1 || why == 3) System.out.print("a="+a+" ");
-			    		else                     System.out.print("a="+a+" ");
-			    		System.out.println(str+"time="+(System.currentTimeMillis()-start)+"ms");
-			    		if(++why == 3)
-			    		{
-			    			System.out.println();
-			    		}
+			    		System.out.print("a="+a+" ");                 
+			    		System.out.println("time="+(System.currentTimeMillis()-start)+"ms");
 			    		a = 0;
 			    		exit.set(0);
-			    		LockSupport.unpark(thread);
 			    	}
 			    }
 			}.start();

@@ -1,75 +1,43 @@
-package guard.earth2;
+package beifen;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.LockSupport;
-import guard.earth.EarthTech;
 
 public class ArrayList_Test
 {
-	private static int why = 1;
 	private static long start;
-	private static Thread t;
 	private static final AtomicInteger exit = new AtomicInteger();
 	private static final CopyOnWriteArrayList<String> list1 = new CopyOnWriteArrayList<String>();
-	private static final EarthTech.ArrayList<String> list2 = new EarthTech.ArrayList<String>();
+	private static final EarthJUC.ArrayList<String> list2 = new EarthJUC.ArrayList<String>();
 
 	public static void main(String[] args) throws InterruptedException
 	{
-		t = Thread.currentThread();
-	    for(int i=0;i<4;i++)
-	    {
-	    	start();
-	    	LockSupport.park();
-	    }
-	}
-
-	private static void start() throws InterruptedException
-	{
 		start = System.currentTimeMillis();
-		for(int i1=0;i1<1000;i1++)
+		for(int i1=0;i1<1000;i1++)//1000 Thread
 		{
 			new Thread()
 			{
 				public void run()
 			    {
-			    	for(int i2=0;i2<3000;i2++)//change is ok
+			    	for(int i2=0;i2<6000;i2++)//change is ok
 					{
-			    		if(why == 1 || why == 3)
+			    		list2.add("");
+			    		if(null == list2.poll())
 			    		{
-			    			list1.add("");
-				    		if(null == list1.remove(0))
-					    	{
-				                System.out.println("error1");
-				    		}
+				    		System.out.println("error");
 			    		}
-			    		else
-			    		{
-				    		list2.add("");
-				    		if(null == list2.poll())
-				    		{
-					    		System.out.println("error2");
-				    		}
-			    		}
+			    		
+			    		//jdk test
+//			    		list1.add("");
+//			    		if(null == list1.remove(0))
+//				    	{
+//			                System.out.println("error");
+//			    		}
 					}
 			    	if(exit.incrementAndGet() == 1000)
 			    	{
-			    		String str1;
-			    		if(why == 1 || why == 3)
-			    		{
-			    			str1 = "jdk CopyOnWriteArrayList: ";
-			    		}
-			    		else
-			    		{
-			    			str1 = "EarthTech.ArrayList:      ";
-			    		}
-			    		System.out.println(str1+"time="+(System.currentTimeMillis()-start)+"ms");
-			    		if(++why == 3)
-			    		{
-			    			System.out.println();
-			    		}
+			    		System.out.println("time="+(System.currentTimeMillis()-start)+"ms");
 			    		exit.set(0);
-			    		LockSupport.unpark(t);
 			    	}
 			    }
 			}.start();
