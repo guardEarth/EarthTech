@@ -1,9 +1,9 @@
-# EarthTech
+# EarthJUC
 ---------------- English ----------------<br/>
 This is an efficient concurrent toolkit, if one day, extraterrestrial civilization invades the earth, this toolkit may be an attempt by the software layer to fight against extraterrestrial civilization<br/>
 <br/>
 usage method：<br/>
-1：Import "EarthTech.jar" into the project<br/>
+1：Import "EarthJUC.jar" into the project<br/>
 2：Run any of the following files<br/>
 ArrayList_Test.java<br/>
 LinkedList_Test.java<br/>
@@ -22,52 +22,52 @@ JDK 1.9 is required to run, and This package has concurrency performance that is
       <td width="236"><b>class2</b></td>
       <td><b>result</b></td>
    <tr>
-      <td>EarthTech.Lock</td>
+      <td>EarthJUC.Lock</td>
       <td>ReentrantLock</td>
       <td>>10%</td>
    </tr>
    <tr>
-      <td>EarthTech.SpinLock</td>
+      <td>EarthJUC.SpinLock</td>
       <td>X</td>
       <td>>∞（Java does not have spinlock）</td>
    </tr>
    <tr>
-      <td>EarthTech.ReentrantSpinLock</td>
+      <td>EarthJUC.ReentrantSpinLock</td>
       <td>ReentrantLock</td>
       <td>>30%</td>
    </tr>
    <tr>
-      <td>EarthTech.RWLock</td>
+      <td>EarthJUC.RWLock</td>
       <td>StampedLock</td>
       <td>>∞（StampedLock is not secure）</td>
    </tr>
    <tr>
-      <td>EarthTech.Semaphore</td>
+      <td>EarthJUC.Semaphore</td>
       <td>Semaphore</td>
       <td>>10%</td>
    </tr>
    <tr>
-      <td>EarthTech.ArrayList</td>
+      <td>EarthJUC.ArrayList</td>
       <td>CopyOnWriteArrayList</td>
       <td>>50%</td>
    </tr>
    <tr>
-      <td>EarthTech.LinkedList</td>
+      <td>EarthJUC.LinkedList</td>
       <td>ConcurrentLinkedQueue</td>
       <td>>20%</td>
    </tr>
    <tr>
-      <td>EarthTech.BlockingList</td>
+      <td>EarthJUC.BlockingList</td>
       <td>LinkedBlockingQueue</td>
       <td>>5%</td>
    </tr>
    <tr>
-      <td>EarthTech.HashMap</td>
+      <td>EarthJUC.HashMap</td>
       <td>ConcurrentHashMap</td>
       <td>>10%</td>
    </tr>
    <tr>
-      <td>EarthTech.ThreadPool</td>
+      <td>EarthJUC.ThreadPool</td>
       <td>ThreadPoolExecutor</td>
       <td>>10%</td>
    </tr>
@@ -77,7 +77,7 @@ JDK 1.9 is required to run, and This package has concurrency performance that is
 这是一款高效的并发工具包, 如果某一天, 有地外文明侵犯地球, 此包的性能也许能派上用场<br/>
 <br/>
 使用方式：<br/>
-1：把 EarthTech.jar 导入到项目里<br/>
+1：把 EarthJUC.jar 导入到项目里<br/>
 2：运行以下任意文件即可<br/>
 ArrayList_Test.java        //数组<br/>
 LinkedList_Test.java      //链表<br/>
@@ -96,52 +96,52 @@ ThreadPool_Test.java   //线程池<br/>
       <td width="236"><b>类2</b></td>
       <td width="266"><b>结果</b></td>
    <tr>
-      <td>EarthTech.Lock</td>
+      <td>EarthJUC.Lock</td>
       <td>ReentrantLock</td>
       <td>>10%</td>
    </tr>
    <tr>
-      <td>EarthTech.SpinLock</td>
+      <td>EarthJUC.SpinLock</td>
       <td>X</td>
       <td>>∞（java没有自旋锁）</td>
    </tr>
    <tr>
-      <td>EarthTech.ReentrantSpinLock</td>
+      <td>EarthJUC.ReentrantSpinLock</td>
       <td>ReentrantLock</td>
       <td>>30%</td>
    </tr>
    <tr>
-      <td>EarthTech.RWLock</td>
+      <td>EarthJUC.RWLock</td>
       <td>StampedLock</td>
       <td>>∞（StampedLock是不安全的）</td>
    </tr>
    <tr>
-      <td>EarthTech.Semaphore</td>
+      <td>EarthJUC.Semaphore</td>
       <td>Semaphore</td>
       <td>>10%</td>
    </tr>
    <tr>
-      <td>EarthTech.ArrayList</td>
+      <td>EarthJUC.ArrayList</td>
       <td>CopyOnWriteArrayList</td>
       <td>>50%</td>
    </tr>
    <tr>
-      <td>EarthTech.LinkedList</td>
+      <td>EarthJUC.LinkedList</td>
       <td>ConcurrentLinkedQueue</td>
       <td>>20%</td>
    </tr>
    <tr>
-      <td>EarthTech.BlockingList</td>
+      <td>EarthJUC.BlockingList</td>
       <td>LinkedBlockingQueue</td>
       <td>>5%</td>
    </tr>
    <tr>
-      <td>EarthTech.HashMap</td>
+      <td>EarthJUC.HashMap</td>
       <td>ConcurrentHashMap</td>
       <td>>10%</td>
    </tr>
    <tr>
-      <td>EarthTech.ThreadPool</td>
+      <td>EarthJUC.ThreadPool</td>
       <td>ThreadPoolExecutor</td>
       <td>>10%</td>
    </tr>
